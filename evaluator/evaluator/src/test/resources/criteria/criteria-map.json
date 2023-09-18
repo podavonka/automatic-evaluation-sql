@@ -1,0 +1,62 @@
+{
+  "corresponding to the relational model":
+  {
+    "maxScore" : 5,
+    "queryType" : "CREATE"
+  },
+  "defining primary keys of tables":
+  {
+    "maxScore" : 1,
+    "queryType" : "CREATE"
+  },
+  "using integrity constraints":
+  {
+    "maxScore" : 2,
+    "queryType" : "CREATE"
+  },
+  "using ON UPDATE/DELETE for foreign key":
+  {
+    "maxScore" : 2,
+    "queryType" : "CREATE"
+  },
+  "statements to fill tables by data":
+  {
+    "maxScore" : 2,
+    "queryType" : "INSERT"
+  },
+  "outer join of tables":
+  {
+    "maxScore" : 2,
+    "queryType" : "SELECT"
+  },
+  "inner join of tables":
+  {
+    "maxScore" : 2,
+    "queryType" : "SELECT"
+  },
+  "condition on the data":
+  {
+    "maxScore" : 1,
+    "queryType" : "SELECT"
+  },
+  "aggregation":
+  {
+    "maxScore" : 2,
+    "queryType" : "SELECT"
+  },
+  "sorting and pagination":
+  {
+    "maxScore" : 1,
+    "queryType" : "SELECT"
+  },
+  "set operations":
+  {
+    "maxScore" : 1,
+    "queryType" : "SELECT"
+  },
+  "inner SELECT":
+  {
+    "maxScore" : 2,
+    "queryType" : "SELECT"
+  }
+}

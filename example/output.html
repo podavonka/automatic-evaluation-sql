@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluation Output</title>
+    <style>
+        * {
+            font-family: "system-ui", sans-serif;
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 20px;
+            color: darkcyan;
+        }
+        .score, .score thead tr, .score tfoot tr {
+            border-top: 2px solid black;
+            border-collapse: collapse;
+        }
+        .score thead tr {
+            border-bottom: 2px solid black;
+        }
+        .logs {
+            text-align: left;
+        }
+        .error {
+            color: red;
+            font-weight: 600;
+        }
+        table {
+            margin-bottom: 15px;
+        }
+        th, td {
+            padding: 10px;
+        }
+        tbody th {
+            font-weight: normal;
+        }
+        .description {
+            width: 100%;
+        }
+        header {
+            padding: 10px 0 10px 0;
+            border-top: 2px dashed darkcyan;
+            border-bottom: 2px dashed darkcyan;
+            color: darkcyan;
+            font-weight: 600;
+        }
+        span {
+            color: chocolate;
+        }
+        span.uncertain {
+            color: darkgrey;
+        }
+    </style>
+</head>
+<body>
+  <div class="statistics">
+    <p>CREATE TABLE: 17 read / 17 executed<br>INSERT INTO: 17 read / 14 executed<br>SELECT: 4 read / 4 executed</p>
+  </div>
+  <table class="score" style="width:100%">
+    <thead>
+    <tr>
+      <th>DESCRIPTION</th>
+      <th>MAX SCORE</th>
+      <th>CERTAIN SCORE</th>
+      <th>POSSIBLE SCORE</th>
+      <th>QUERY TYPE</th>
+      <th>OCCURRENCES</th>
+    </tr>
+    </thead>
+    <tbody>
+<tr>
+<th>defining primary keys of tables</th>
+<th>1</th>
+<th>0.8</th>
+<th>0.8</th>
+<th>CREATE</th>
+<th>14</th>
+</tr>
+<tr>
+<th>using integrity constraints</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>CREATE</th>
+<th>17</th>
+</tr>
+<tr>
+<th>using ON UPDATE/DELETE for foreign key</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>CREATE</th>
+<th>12</th>
+</tr>
+<tr>
+<th>statements to fill tables by data</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>INSERT</th>
+<th>14</th>
+</tr>
+<tr>
+<th>outer join of tables</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>SELECT</th>
+<th>1</th>
+</tr>
+<tr>
+<th>inner join of tables</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>SELECT</th>
+<th>2</th>
+</tr>
+<tr>
+<th>condition on the data</th>
+<th>1</th>
+<th>1.0</th>
+<th>1.0</th>
+<th>SELECT</th>
+<th>3</th>
+</tr>
+<tr>
+<th>aggregation</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>SELECT</th>
+<th>2</th>
+</tr>
+<tr>
+<th>sorting and pagination</th>
+<th>1</th>
+<th>1.0</th>
+<th>1.0</th>
+<th>SELECT</th>
+<th>2</th>
+</tr>
+<tr>
+<th>set operations</th>
+<th>1</th>
+<th>1.0</th>
+<th>1.0</th>
+<th>SELECT</th>
+<th>1</th>
+</tr>
+<tr>
+<th>inner SELECT</th>
+<th>2</th>
+<th>2.0</th>
+<th>2.0</th>
+<th>SELECT</th>
+<th>2</th>
+</tr></tbody>
+    <tfoot>
+    <tr>
+      <th>TOTAL SCORE</th>
+      <th>18</th>
+      <th>17.8</th>
+      <th>17.8</th>
+    </tr>
+    </tfoot>
+  </table>
+  <table class="logs" style="width:100%">
+    <tbody>
+<tr>
+<th class="error">ERROR</th>
+<th>Column "N" not found; SQL statement:<br>INSERT INTO ROOM (HOTEL, NUMBER, TYPE) <br>SELECT H.HOTEL_ID, N, (ARRAY['SINGLE', 'DOUBLE', 'TRIPLE'])[CEIL(RANDOM() * 3)] <br>FROM HOTEL AS H, GENERATE_SERIES(1, (CEIL(RANDOM() * 90)+10)::INTEGER) AS N; [42122-214]</th>
+</tr>
+<tr>
+<th class="error">ERROR</th>
+<th>Column "CURDATE" not found; SQL statement:<br>INSERT INTO BREAKFAST (HOTEL, DATE, MENU, EARLIESTTIME, LATESTTIME) <br>SELECT H.HOTEL_ID, CURDATE, (ARRAY['SCRAMBLED EGG', 'BAVARIAN SAUSAGES', 'CLUB SANDWICH', <br>        'OATMEAL PORRIDGE', 'YOGURT WITH MUESLI', 'PANCAKES WITH JAM'])[CEIL(RANDOM() * 4)], <br>       DATE_TRUNC('MINUTE', TIME '05:00:00' + RANDOM() <br>                        * (TIME '07:30:00' - TIME '05:00:00')), <br>       DATE_TRUNC('MINUTE', TIME '10:00:00' + RANDOM() <br>                        * (TIME '11:00:00' - TIME '10:00:00')) <br>FROM HOTEL AS H, GENERATE_SERIES('2022-01-01', '2022-01-14', INTERVAL '1' DAY) AS CURDATE; [42122-214]</th>
+</tr>
+<tr>
+<th class="error">ERROR</th>
+<th>Column "CURDATE" not found; SQL statement:<br>INSERT INTO MEAL (GUEST, HOTEL, DATE, RESERVATION, RESERVEDTIME) <br>SELECT G.GUEST_ID, R.HOTEL, CURDATE, R.RESERVATION_ID, <br>       DATE_TRUNC('MINUTE', B.EARLIESTTIME + RANDOM() * ((B.LATESTTIME) - (B.EARLIESTTIME))) <br>FROM GUEST AS G JOIN RESERVATION R ON (G.GUEST_ID = R.GUEST), <br>     GENERATE_SERIES(R.ARRIVALDATE, R.DEPARTUREDATE, INTERVAL '1' DAY) AS CURDATE, <br>     BREAKFAST AS B <br>WHERE (RANDOM() > 0.50) AND (CURDATE BETWEEN '2022-01-01' AND '2022-01-14') <br>    AND (B.DATE = CURDATE) AND (R.HOTEL = B.HOTEL); [42122-214]</th>
+</tr></tbody>
+  </table>
+  <div class="description">
+    <div class="relationalModel">
+      <header>RELATIONAL MODEL</header>
+      <p>--> TABLE <span>HOTELPHONENUMBER</span> [PHONENUMBER_ID, HOTEL, NUMBER]<br>--- primary key [PHONENUMBER_ID]<br>--- primary key [HOTEL, NUMBER]<br>--- reference HOTELPHONENUMBER [HOTEL] => HOTEL [HOTEL_ID]<br><br>--> TABLE <span>IDENTITYDOCUMENT</span> [IDENTITYDOCUMENT_ID, ISSUECOUNTRY, TYPE, NUMBER, FIRSTNAME, LASTNAME, DATEOFBIRTH, RESIDENCE]<br>--- primary key [IDENTITYDOCUMENT_ID]<br>--- primary key [ISSUECOUNTRY, TYPE, NUMBER]<br>--- reference IDENTITYDOCUMENT [DATEOFBIRTH, FIRSTNAME, LASTNAME, RESIDENCE] => PERSON [DATEOFBIRTH, FIRSTNAME, LASTNAME, RESIDENCE]<br><br>--> TABLE <span>PERSON</span> [PERSON_ID, FIRSTNAME, LASTNAME, DATEOFBIRTH, RESIDENCE, GENDER]<br>--- primary key [PERSON_ID]<br>--- primary key [FIRSTNAME, LASTNAME, DATEOFBIRTH, RESIDENCE]<br><br>--> TABLE <span>RESERVATION</span> [RESERVATION_ID, HOTEL, ROOM, GUEST, COST, ARRIVALDATE, ARRIVALTIME, DEPARTUREDATE, DEPARTURETIME]<br>--- primary key [RESERVATION_ID]<br>--- reference RESERVATION [GUEST] => GUEST [GUEST_ID]<br>--- reference RESERVATION [HOTEL, ROOM] => ROOM [HOTEL, NUMBER]<br><br>--> TABLE <span>BREAKFAST</span> [HOTEL, DATE, MENU, EARLIESTTIME, LATESTTIME]<br>--- primary key [DATE, HOTEL]<br>--- reference BREAKFAST [HOTEL] => HOTEL [HOTEL_ID]<br><br>--> TABLE <span>EMPLOYEE</span> [EMPLOYEE_ID, EMAIL]<br>--- primary key [EMPLOYEE_ID]<br>--- reference EMPLOYEE [EMPLOYEE_ID] => PERSON [PERSON_ID]<br><br>--> TABLE <span>MEAL</span> [MEAL_ID, GUEST, HOTEL, DATE, RESERVATION, RESERVEDTIME]<br>--- primary key [MEAL_ID]<br>--- primary key [GUEST, HOTEL, DATE, RESERVATION]<br>--- reference MEAL [RESERVATION] => RESERVATION [RESERVATION_ID]<br>--- reference MEAL [DATE, HOTEL] => BREAKFAST [DATE, HOTEL]<br>--- reference MEAL [GUEST] => GUEST [GUEST_ID]<br><br>--> TABLE <span>GUEST</span> [GUEST_ID, PHONENUMBER, EMAIL]<br>--- primary key [GUEST_ID]<br>--- reference GUEST [GUEST_ID] => PERSON [PERSON_ID]<br><br>--> TABLE <span>FIRSTNAME</span> [NAME]<br><br>--> TABLE <span>STREET</span> [STREET]<br><br>--> TABLE <span>HOTEL</span> [HOTEL_ID, NAME, STREET, HOUSENUMBER, POSTCODE, CITY, EMAIL]<br>--- primary key [HOTEL_ID]<br>--- primary key [NAME, STREET, HOUSENUMBER, POSTCODE, CITY]<br>--- reference HOTEL [CITY] => CITY [CITY_ID]<br><br>--> TABLE <span>CITY</span> [CITY_ID, COUNTRY, NAME]<br>--- primary key [CITY_ID]<br>--- primary key [COUNTRY, NAME]<br><br>--> TABLE <span>COLLEAGUE</span> [EMPLOYEE1, EMPLOYEE2]<br>--- primary key [EMPLOYEE2, EMPLOYEE1]<br>--- reference COLLEAGUE [EMPLOYEE2] => EMPLOYEE [EMPLOYEE_ID]<br>--- reference COLLEAGUE [EMPLOYEE1] => EMPLOYEE [EMPLOYEE_ID]<br><br>--> TABLE <span>LASTNAME</span> [NAME]<br><br>--> TABLE <span>ROOMMATE</span> [GUEST1, GUEST2, RESERVATION]<br>--- primary key [RESERVATION, GUEST1, GUEST2]<br>--- reference ROOMMATE [GUEST2] => GUEST [GUEST_ID]<br>--- reference ROOMMATE [GUEST1] => GUEST [GUEST_ID]<br>--- reference ROOMMATE [RESERVATION] => RESERVATION [RESERVATION_ID]<br><br>--> TABLE <span>ROOM</span> [HOTEL, NUMBER, TYPE]<br>--- primary key [HOTEL, NUMBER]<br>--- reference ROOM [HOTEL] => HOTEL [HOTEL_ID]<br><br>--> TABLE <span>EMPLOYMENT</span> [EMPLOYMENT_ID, EMPLOYEE, HOTEL, FROMDATE, TODATE, POSITION, SALARY]<br>--- primary key [EMPLOYMENT_ID]<br>--- reference EMPLOYMENT [EMPLOYEE] => EMPLOYEE [EMPLOYEE_ID]<br>--- reference EMPLOYMENT [HOTEL] => HOTEL [HOTEL_ID]<br></p>
+    </div>
+    <div class="primaryKeys">
+      <header>PRIMARY KEYS</header>
+      <p>Absence of primary key in tables:<span> [FIRSTNAME] [STREET] [LASTNAME]</span></p>
+    </div>
+    <div class="integrityConstraints">
+      <header>INTEGRITY CONSTRAINTS</header>
+      <p>FOREIGN KEY constraint is occurred 19 times<br>CHECK constraint is occurred 13 times<br>UNIQUE constraint is occurred 6 times<br>NOT NULL constraint is occurred 55 times<br><br>CREATE TABLE IF NOT EXISTS CITY ( <br>    CITY_ID SERIAL PRIMARY KEY, <br>    COUNTRY VARCHAR(50) NOT NULL, <br>    NAME VARCHAR(50) NOT NULL, <br>    UNIQUE (COUNTRY, NAME) <br>);<br><br>CREATE TABLE IF NOT EXISTS HOTEL ( <br>    HOTEL_ID SERIAL PRIMARY KEY, <br>    NAME VARCHAR(50) NOT NULL, <br>    STREET VARCHAR(50) NOT NULL, <br>    HOUSENUMBER VARCHAR(10) NOT NULL, <br>    POSTCODE VARCHAR(10) NOT NULL <span>CHECK</span> (POSTCODE NOT LIKE '%[^0-9]%'), <br>    CITY INTEGER NOT NULL <span>REFERENCES</span> CITY (CITY_ID) ON UPDATE CASCADE ON DELETE CASCADE, <br>    EMAIL VARCHAR(100) NOT NULL <span>CHECK</span> (EMAIL LIKE '_%@_%.__%'), <br>    UNIQUE (NAME, STREET, HOUSENUMBER, POSTCODE, CITY) <br>);<br><br>CREATE TABLE IF NOT EXISTS HOTELPHONENUMBER ( <br>    PHONENUMBER_ID SERIAL PRIMARY KEY, <br>    HOTEL INTEGER NOT NULL <span>REFERENCES</span> HOTEL (HOTEL_ID) ON UPDATE CASCADE ON DELETE SET NULL, <br>    NUMBER VARCHAR(20) NOT NULL <span>CHECK</span> (NUMBER NOT LIKE '%[^0-9+]%'), <br>    UNIQUE (HOTEL, NUMBER) <br>);<br><br>CREATE TABLE IF NOT EXISTS ROOM ( <br>    HOTEL INTEGER, <br>    NUMBER VARCHAR(10), <br>    TYPE VARCHAR (10) NOT NULL, <br>    PRIMARY KEY (HOTEL, NUMBER), <br>    CONSTRAINT ROOM_FK_HOTEL FOREIGN KEY (HOTEL) <span>REFERENCES</span> HOTEL (HOTEL_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE <br>);<br><br>CREATE TABLE IF NOT EXISTS PERSON ( <br>    PERSON_ID SERIAL PRIMARY KEY, <br>    FIRSTNAME VARCHAR(50) NOT NULL, <br>    LASTNAME VARCHAR(50) NOT NULL, <br>    DATEOFBIRTH DATE NOT NULL, <br>    RESIDENCE VARCHAR(200) NOT NULL, <br>    GENDER VARCHAR(10) NOT NULL, <br>    UNIQUE (FIRSTNAME, LASTNAME, DATEOFBIRTH, RESIDENCE) <br>);<br><br>CREATE TABLE IF NOT EXISTS IDENTITYDOCUMENT ( <br>    IDENTITYDOCUMENT_ID SERIAL PRIMARY KEY, <br>    ISSUECOUNTRY VARCHAR(50) NOT NULL, <br>    TYPE VARCHAR(50) NOT NULL, <br>    NUMBER VARCHAR(20) NOT NULL, <br>    FIRSTNAME VARCHAR(50) NOT NULL, <br>    LASTNAME VARCHAR(50) NOT NULL, <br>    DATEOFBIRTH DATE NOT NULL, <br>    RESIDENCE VARCHAR(200) NOT NULL, <br>    UNIQUE (ISSUECOUNTRY, TYPE, NUMBER), <br>    CONSTRAINT IDENTITYDOCUMENT_FK_PERSON FOREIGN KEY (FIRSTNAME, LASTNAME, DATEOFBIRTH, <br>RESIDENCE) <br>        <span>REFERENCES</span> PERSON (FIRSTNAME, LASTNAME, DATEOFBIRTH, RESIDENCE) <br>        ON UPDATE CASCADE ON DELETE CASCADE <br>);<br><br>CREATE TABLE IF NOT EXISTS EMPLOYEE ( <br>    EMPLOYEE_ID INTEGER PRIMARY KEY, <br>    EMAIL VARCHAR(100) NOT NULL, <br>    CONSTRAINT EMPLOYEE_FK_PERSON FOREIGN KEY (EMPLOYEE_ID) <span>REFERENCES</span> PERSON (PERSON_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT EMPLOYEE_CH_EMAIL <span>CHECK</span> (EMAIL LIKE '_%@_%.__%') <br>);<br><br>CREATE TABLE IF NOT EXISTS EMPLOYMENT ( <br>    EMPLOYMENT_ID SERIAL PRIMARY KEY, <br>    EMPLOYEE INTEGER NOT NULL, <br>    HOTEL INTEGER NOT NULL, <br>    FROMDATE DATE NOT NULL, <br>    TODATE DATE NOT NULL, <br>    POSITION VARCHAR(20) NOT NULL, <br>    SALARY DECIMAL(100, 2) NOT NULL, <br>    CONSTRAINT EMPLOYMENT_FK_EMPLOYEE FOREIGN KEY (EMPLOYEE) <span>REFERENCES</span> EMPLOYEE <br>(EMPLOYEE_ID) <br>      ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT EMPLOYMENT_FK_HOTEL FOREIGN KEY (HOTEL) <span>REFERENCES</span> HOTEL (HOTEL_ID) <br>      ON UPDATE CASCADE ON DELETE CASCADE <br>);<br><br>CREATE TABLE IF NOT EXISTS COLLEAGUE ( <br>    EMPLOYEE1 INTEGER NOT NULL, <br>    EMPLOYEE2 INTEGER NOT NULL, <br>    PRIMARY KEY (EMPLOYEE1, EMPLOYEE2), <br>    CONSTRAINT COLLEAGUE_FK_EMPLOYEE1 FOREIGN KEY (EMPLOYEE1) <span>REFERENCES</span> EMPLOYEE <br>(EMPLOYEE_ID) <br>     ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT COLLEAGUE_FK_EMPLOYEE2 FOREIGN KEY (EMPLOYEE2) <span>REFERENCES</span> EMPLOYEE <br>(EMPLOYEE_ID) <br>     ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT COLLEAGUE_CH_EMPLOYEE_ID <span>CHECK</span> (EMPLOYEE1 != COLLEAGUE.EMPLOYEE2) <br>);<br><br>CREATE TABLE IF NOT EXISTS GUEST ( <br>    GUEST_ID INTEGER, <br>    PHONENUMBER VARCHAR(20) NOT NULL, <br>    EMAIL VARCHAR(100), <br>    PRIMARY KEY (GUEST_ID), <br>    CONSTRAINT GUEST_FK_PERSON FOREIGN KEY (GUEST_ID) <span>REFERENCES</span> PERSON (PERSON_ID) <br>     ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT GUEST_CH_PHONENUMBER <span>CHECK</span> (PHONENUMBER NOT LIKE '%[^0-9+]%'), <br>    CONSTRAINT GUEST_CH_EMAIL <span>CHECK</span> (EMAIL LIKE '_%@_%.__%') <br>);<br><br>CREATE TABLE IF NOT EXISTS RESERVATION ( <br>    RESERVATION_ID SERIAL PRIMARY KEY, <br>    HOTEL INTEGER NOT NULL, <br>    ROOM VARCHAR(10) NOT NULL, <br>    GUEST INTEGER NOT NULL, <br>    COST DECIMAL(100, 2) NOT NULL, <br>    ARRIVALDATE DATE NOT NULL, <br>    ARRIVALTIME TIME NOT NULL, <br>    DEPARTUREDATE DATE NOT NULL, <br>    DEPARTURETIME TIME NOT NULL, <br>    CONSTRAINT RESERVATION_FK_ROOM FOREIGN KEY (HOTEL, ROOM) <span>REFERENCES</span> ROOM (HOTEL, NUMBER) <br>        ON UPDATE CASCADE ON DELETE SET NULL, <br>    CONSTRAINT RESERVATION_FK_GUEST FOREIGN KEY (GUEST) <span>REFERENCES</span> GUEST (GUEST_ID) <br>        ON UPDATE CASCADE ON DELETE SET NULL, <br>    CONSTRAINT RESERVATION_CH_COST <span>CHECK</span> (COST > 0), <br>    CONSTRAINT RESERVATION_CH_ARRIVALTIME <span>CHECK</span> (ARRIVALTIME > '14:00:00'), <br>    CONSTRAINT RESERVATION_CH_DEPARTUREDATE <span>CHECK</span> (DEPARTUREDATE > RESERVATION.ARRIVALDATE), <br>    CONSTRAINT RESERVATION_CH_DEPARTURETIME <span>CHECK</span> (DEPARTURETIME < '11:00:00') <br>);<br><br>CREATE TABLE IF NOT EXISTS ROOMMATE ( <br>    GUEST1 INTEGER NOT NULL, <br>    GUEST2 INTEGER NOT NULL, <br>    RESERVATION INTEGER NOT NULL, <br>    PRIMARY KEY (GUEST1, GUEST2, RESERVATION), <br>    CONSTRAINT ROOMMATE_FK_GUEST1 FOREIGN KEY (GUEST1) <span>REFERENCES</span> GUEST (GUEST_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT ROOMMATE_FK_GUEST2 FOREIGN KEY (GUEST2) <span>REFERENCES</span> GUEST (GUEST_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT ROOMMATE_FK_RESERVATION FOREIGN KEY (RESERVATION) <span>REFERENCES</span> RESERVATION <br>(RESERVATION_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT ROOMMATE_CH_GUEST <span>CHECK</span> (GUEST1 != GUEST2) <br>);<br><br>CREATE TABLE IF NOT EXISTS BREAKFAST ( <br>    HOTEL INTEGER <span>REFERENCES</span> HOTEL (HOTEL_ID) ON UPDATE CASCADE ON DELETE SET NULL, <br>    DATE DATE, <br>    MENU VARCHAR(200) NOT NULL, <br>    EARLIESTTIME TIME NOT NULL, <br>    LATESTTIME TIME NOT NULL, <br>    PRIMARY KEY (HOTEL, DATE), <br>    CONSTRAINT BREAKFAST_CH_LATESTTIME <span>CHECK</span> (LATESTTIME > BREAKFAST.EARLIESTTIME) <br>);<br><br>CREATE TABLE IF NOT EXISTS MEAL ( <br>    MEAL_ID SERIAL PRIMARY KEY, <br>    GUEST INTEGER NOT NULL, <br>    HOTEL INTEGER NOT NULL, <br>    DATE DATE NOT NULL, <br>    RESERVATION INTEGER NOT NULL, <br>    RESERVEDTIME TIME NOT NULL, <br>    UNIQUE (GUEST, HOTEL, DATE, RESERVATION), <br>    CONSTRAINT MEAL_FK_GUEST FOREIGN KEY (GUEST) <span>REFERENCES</span> GUEST (GUEST_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT MEAL_FK_BREAKFAST FOREIGN KEY (HOTEL, DATE) <span>REFERENCES</span> BREAKFAST (HOTEL, <br>DATE) <br>        ON UPDATE CASCADE ON DELETE CASCADE, <br>    CONSTRAINT MEAL_FK_RESERVATION FOREIGN KEY (RESERVATION) <span>REFERENCES</span> RESERVATION <br>(RESERVATION_ID) <br>        ON UPDATE CASCADE ON DELETE CASCADE <br>);<br><br>CREATE TABLE STREET ( <br>    STREET VARCHAR(50) NOT NULL <br>);<br><br>CREATE TABLE FIRSTNAME ( <br>    NAME VARCHAR(50) NOT NULL <br>);<br><br>CREATE TABLE LASTNAME ( <br>    NAME VARCHAR(50) NOT NULL <br>);<br></p>
+    </div>
+    <div class="onUpdateDelete">
+      <header>ON UPDATE / DELETE</header>
+      <p>Usage of ON UPDATE / DELETE in tables:<span> [HOTEL] [HOTELPHONENUMBER] [ROOM] [IDENTITYDOCUMENT] [EMPLOYEE] [EMPLOYMENT] [COLLEAGUE] [GUEST] [RESERVATION] [ROOMMATE] [BREAKFAST] [MEAL]</span></p>
+    </div>
+    <div class="outerJoin">
+      <header>OUTER JOIN</header>
+      <p>SELECT H.NAME || H.HOTEL_ID AS HOTELNAME, COUNT(N) AS NUMBERS <br>FROM HOTELPHONENUMBER AS N <br>     <span>LEFT OUTER JOIN</span> HOTEL H ON N.HOTEL = H.HOTEL_ID <br>GROUP BY HOTELNAME HAVING (COUNT(N) > 1) <br>ORDER BY HOTELNAME ASC;<br></p>
+    </div>
+    <div class="innerJoin">
+      <header>INNER JOIN</header>
+      <p>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P <span>INNER <span>JOIN</span></span> GUEST G <br>  ON P.PERSON_ID = G.GUEST_ID <br>WHERE P.LASTNAME = 'BLUE' <br> INTERSECT <br>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P <br>     <span>INNER <span>JOIN</span></span> GUEST G ON P.PERSON_ID = G.GUEST_ID <br>WHERE P.FIRSTNAME = 'RIVER';<br><br>SELECT H.NAME || H.HOTEL_ID AS HOTEL, B.DATE, B.EARLIESTTIME, B.EARLIESTTIME, B.MENU <br>FROM HOTEL AS H <span>INNER <span>JOIN</span></span> BREAKFAST B ON H.HOTEL_ID = B.HOTEL <br>WHERE EXISTS ( <br>    SELECT * FROM BREAKFAST <br>    WHERE (B.DATE = '2022-01-01') AND <br>          (B.MENU IN ('BAVARIAN SAUSAGES', 'CLUB SANDWICH')));<br></p>
+    </div>
+    <div class="condition">
+      <header>CONDITION ON THE DATA</header>
+      <p>SELECT T.CITY AS CITY, COUNT(T.RS) AS RESERVATIONS <br>FROM ( <br>    SELECT C.COUNTRY AS COUNTRY, C.NAME AS CITY, R.RESERVATION_ID AS RS <br>    FROM CITY AS C, HOTEL AS H, RESERVATION AS R <br>    <span>WHERE</span> (C.CITY_ID = H.CITY) AND (H.HOTEL_ID = R.HOTEL) <br>    ) AS T <br><span>WHERE</span> T.COUNTRY IN ('GERMANY') <br>GROUP BY CITY HAVING (COUNT(T.RS) > 5000) <br>ORDER BY RESERVATIONS DESC;<br><br>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P INNER JOIN GUEST G <br>  ON P.PERSON_ID = G.GUEST_ID <br><span>WHERE</span> P.LASTNAME = 'BLUE' <br> INTERSECT <br>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P <br>     INNER JOIN GUEST G ON P.PERSON_ID = G.GUEST_ID <br><span>WHERE</span> P.FIRSTNAME = 'RIVER';<br><br>SELECT H.NAME || H.HOTEL_ID AS HOTEL, B.DATE, B.EARLIESTTIME, B.EARLIESTTIME, B.MENU <br>FROM HOTEL AS H INNER JOIN BREAKFAST B ON H.HOTEL_ID = B.HOTEL <br><span>WHERE</span> EXISTS ( <br>    SELECT * FROM BREAKFAST <br>    <span>WHERE</span> (B.DATE = '2022-01-01') AND <br>          (B.MENU IN ('BAVARIAN SAUSAGES', 'CLUB SANDWICH')));<br></p>
+    </div>
+    <div class="aggregation">
+      <header>AGGREGATION</header>
+      <p>SELECT T.CITY AS CITY, <span>COUNT</span>(T.RS) AS RESERVATIONS <br>FROM ( <br>    SELECT C.COUNTRY AS COUNTRY, C.NAME AS CITY, R.RESERVATION_ID AS RS <br>    FROM CITY AS C, HOTEL AS H, RESERVATION AS R <br>    WHERE (C.CITY_ID = H.CITY) AND (H.HOTEL_ID = R.HOTEL) <br>    ) AS T <br>WHERE T.COUNTRY IN ('GERMANY') <br><span>GROUP BY</span> CITY <span>HAVING</span> (<span>COUNT</span>(T.RS) > 5000) <br>ORDER BY RESERVATIONS DESC;<br><br>SELECT H.NAME || H.HOTEL_ID AS HOTELNAME, <span>COUNT</span>(N) AS NUMBERS <br>FROM HOTELPHONENUMBER AS N <br>     LEFT OUTER JOIN HOTEL H ON N.HOTEL = H.HOTEL_ID <br><span>GROUP BY</span> HOTELNAME <span>HAVING</span> (<span>COUNT</span>(N) > 1) <br>ORDER BY HOTELNAME ASC;<br></p>
+    </div>
+    <div class="sorting">
+      <header>SORTING AND PAGINATION</header>
+      <p>SELECT T.CITY AS CITY, COUNT(T.RS) AS RESERVATIONS <br>FROM ( <br>    SELECT C.COUNTRY AS COUNTRY, C.NAME AS CITY, R.RESERVATION_ID AS RS <br>    FROM CITY AS C, HOTEL AS H, RESERVATION AS R <br>    WHERE (C.CITY_ID = H.CITY) AND (H.HOTEL_ID = R.HOTEL) <br>    ) AS T <br>WHERE T.COUNTRY IN ('GERMANY') <br>GROUP BY CITY HAVING (COUNT(T.RS) > 5000) <br><span>ORDER BY</span> RESERVATIONS DESC;<br><br>SELECT H.NAME || H.HOTEL_ID AS HOTELNAME, COUNT(N) AS NUMBERS <br>FROM HOTELPHONENUMBER AS N <br>     LEFT OUTER JOIN HOTEL H ON N.HOTEL = H.HOTEL_ID <br>GROUP BY HOTELNAME HAVING (COUNT(N) > 1) <br><span>ORDER BY</span> HOTELNAME ASC;<br></p>
+    </div>
+    <div class="setOperations">
+      <header>SET OPERATION</header>
+      <p>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P INNER JOIN GUEST G <br>  ON P.PERSON_ID = G.GUEST_ID <br>WHERE P.LASTNAME = 'BLUE' <br> <span>INTERSECT</span> <br>SELECT P.FIRSTNAME, P.LASTNAME, G.EMAIL <br>FROM PERSON AS P <br>     INNER JOIN GUEST G ON P.PERSON_ID = G.GUEST_ID <br>WHERE P.FIRSTNAME = 'RIVER';<br></p>
+    </div>
+    <div class="innerSelect">
+      <header>INNER SELECT</header>
+      <p><span>SELECT</span> T.CITY AS CITY, COUNT(T.RS) AS RESERVATIONS <br>FROM ( <br>    <span>SELECT</span> C.COUNTRY AS COUNTRY, C.NAME AS CITY, R.RESERVATION_ID AS RS <br>    FROM CITY AS C, HOTEL AS H, RESERVATION AS R <br>    WHERE (C.CITY_ID = H.CITY) AND (H.HOTEL_ID = R.HOTEL) <br>    ) AS T <br>WHERE T.COUNTRY IN ('GERMANY') <br>GROUP BY CITY HAVING (COUNT(T.RS) > 5000) <br>ORDER BY RESERVATIONS DESC;<br><br><span>SELECT</span> H.NAME || H.HOTEL_ID AS HOTEL, B.DATE, B.EARLIESTTIME, B.EARLIESTTIME, B.MENU <br>FROM HOTEL AS H INNER JOIN BREAKFAST B ON H.HOTEL_ID = B.HOTEL <br>WHERE EXISTS ( <br>    <span>SELECT</span> * FROM BREAKFAST <br>    WHERE (B.DATE = '2022-01-01') AND <br>          (B.MENU IN ('BAVARIAN SAUSAGES', 'CLUB SANDWICH')));<br></p>
+    </div>
+  </div>
+</body>
+</html>

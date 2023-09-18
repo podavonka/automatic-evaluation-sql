@@ -1,0 +1,50 @@
+[
+  {
+    "name" : "corresponding to the relational model",
+    "maxScore" : 5
+  },
+  {
+    "name" : "defining primary keys of tables",
+    "maxScore" : 1
+  },
+  {
+    "name" : "using integrity constraints",
+    "maxScore" : 2
+  },
+  {
+    "name" : "using ON UPDATE/DELETE for foreign key",
+    "maxScore" : 2
+  },
+  {
+    "name" : "statements to fill tables by data",
+    "maxScore" : 2
+  },
+  {
+    "name" : "outer join of tables",
+    "maxScore" : 2
+  },
+  {
+    "name" : "inner join of tables",
+    "maxScore" : 2
+  },
+  {
+    "name" : "condition on the data",
+    "maxScore" : 1
+  },
+  {
+    "name" : "aggregation",
+    "maxScore" : 2
+  },
+  {
+    "name" : "sorting and pagination",
+    "maxScore" : 1
+  },
+  {
+    "name" : "set operations",
+    "maxScore" : 1
+  },
+  {
+    "name" : "inner SELECT",
+    "maxScore" : 2
+  }
+]

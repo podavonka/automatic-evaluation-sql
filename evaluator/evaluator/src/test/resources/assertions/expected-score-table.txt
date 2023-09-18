@@ -1,0 +1,17 @@
+
+------------------------------------------------------------------------------------------------------------------
+                             description   maxScore   certainScore   possibleScore   queryType   occurrences
+------------------------------------------------------------------------------------------------------------------
+         defining primary keys of tables       1          0.0             0.0         CREATE           0
+             using integrity constraints       2          0.0             0.0         CREATE           0
+  using ON UPDATE/DELETE for foreign key       2          0.0             0.0         CREATE           0
+       statements to fill tables by data       2          0.0             0.0         INSERT           0
+                    outer join of tables       2          0.0             0.0         SELECT           0
+                    inner join of tables       2          0.0             0.0         SELECT           0
+                   condition on the data       1          0.0             0.0         SELECT           0
+                             aggregation       2          0.0             0.0         SELECT           0
+                  sorting and pagination       1          0.0             0.0         SELECT           0
+                          set operations       1          0.0             0.0         SELECT           0
+                            inner SELECT       2          0.0             0.0         SELECT           0
+------------------------------------------------------------------------------------------------------------------
+                             TOTAL SCORE      18          0.0             0.0

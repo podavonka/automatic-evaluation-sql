@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb;MODE=PostgreSQL
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: create-drop
+  # http://localhost:8080/h2-console/
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      #use data.sql to produce data into database
+      mode: always
+  main:
+    banner-mode: off
+    log-startup-info: off
+
+logging:
+  level:
+    org.springframework: off
+    org.apache: off
+    com.zaxxer: off
+    root: warn

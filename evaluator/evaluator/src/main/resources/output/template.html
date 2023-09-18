@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluation Output</title>
+    <style>
+        * {
+            font-family: "system-ui", sans-serif;
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 20px;
+            color: darkcyan;
+        }
+        .score, .score thead tr, .score tfoot tr {
+            border-top: 2px solid black;
+            border-collapse: collapse;
+        }
+        .score thead tr {
+            border-bottom: 2px solid black;
+        }
+        .logs {
+            text-align: left;
+        }
+        .error {
+            color: red;
+            font-weight: 600;
+        }
+        table {
+            margin-bottom: 15px;
+        }
+        th, td {
+            padding: 10px;
+        }
+        tbody th {
+            font-weight: normal;
+        }
+        .description {
+            width: 100%;
+        }
+        header {
+            padding: 10px 0 10px 0;
+            border-top: 2px dashed darkcyan;
+            border-bottom: 2px dashed darkcyan;
+            color: darkcyan;
+            font-weight: 600;
+        }
+        span {
+            color: chocolate;
+        }
+        span.uncertain {
+            color: darkgrey;
+        }
+    </style>
+</head>
+<body>
+  <div class="statistics">
+    <p>$statistics</p>
+  </div>
+  <table class="score" style="width:100%">
+    <thead>
+    <tr>
+      <th>DESCRIPTION</th>
+      <th>MAX SCORE</th>
+      <th>CERTAIN SCORE</th>
+      <th>POSSIBLE SCORE</th>
+      <th>QUERY TYPE</th>
+      <th>OCCURRENCES</th>
+    </tr>
+    </thead>
+    <tbody>$criteria</tbody>
+    <tfoot>
+    <tr>
+      <th>TOTAL SCORE</th>
+      <th>$totalMaxScore</th>
+      <th>$totalScore</th>
+      <th>$totalPossibleScore</th>
+    </tr>
+    </tfoot>
+  </table>
+  <table class="logs" style="width:100%">
+    <tbody>$logs</tbody>
+  </table>
+  <div class="description">
+    <div class="relationalModel">
+      <header>RELATIONAL MODEL</header>
+      <p>$relationalModel</p>
+    </div>
+    <div class="primaryKeys">
+      <header>PRIMARY KEYS</header>
+      <p>$primaryKeys</p>
+    </div>
+    <div class="integrityConstraints">
+      <header>INTEGRITY CONSTRAINTS</header>
+      <p>$integrityConstraints</p>
+    </div>
+    <div class="onUpdateDelete">
+      <header>ON UPDATE / DELETE</header>
+      <p>$onUpdateDelete</p>
+    </div>
+    <div class="outerJoin">
+      <header>OUTER JOIN</header>
+      <p>$outerJoin</p>
+    </div>
+    <div class="innerJoin">
+      <header>INNER JOIN</header>
+      <p>$innerJoin</p>
+    </div>
+    <div class="condition">
+      <header>CONDITION ON THE DATA</header>
+      <p>$condition</p>
+    </div>
+    <div class="aggregation">
+      <header>AGGREGATION</header>
+      <p>$aggregation</p>
+    </div>
+    <div class="sorting">
+      <header>SORTING AND PAGINATION</header>
+      <p>$sorting</p>
+    </div>
+    <div class="setOperations">
+      <header>SET OPERATION</header>
+      <p>$setOperations</p>
+    </div>
+    <div class="innerSelect">
+      <header>INNER SELECT</header>
+      <p>$innerSelect</p>
+    </div>
+  </div>
+</body>
+</html>

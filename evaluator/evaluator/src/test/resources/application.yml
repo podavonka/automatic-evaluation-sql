@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb;MODE=PostgreSQL
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+  # http://localhost:8080/h2-console/
+  h2:
+    console:
+      enabled: true
+  main:
+    banner-mode: off
+    log-startup-info: off
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org.springframework: off
+    org.apache: off
+    com.zaxxer: off
+    root: warn
+
+CRITERIA_JSON: src/main/resources/criteria/criteria-map.json
+SQL_PDF: src/main/resources/test-data/students/st04.pdf
+RM_PDF: src/main/resources/test-data/rm.pdf

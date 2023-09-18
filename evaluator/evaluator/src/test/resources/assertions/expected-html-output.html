@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluation Output</title>
+    <style>
+        * {
+            font-family: "system-ui", sans-serif;
+            font-size: 14px;
+        }
+        h2 {
+            font-size: 20px;
+            color: darkcyan;
+        }
+        .score, .score thead tr, .score tfoot tr {
+            border-top: 2px solid black;
+            border-collapse: collapse;
+        }
+        .score thead tr {
+            border-bottom: 2px solid black;
+        }
+        .logs {
+            text-align: left;
+        }
+        .error {
+            color: red;
+            font-weight: 600;
+        }
+        table {
+            margin-bottom: 15px;
+        }
+        th, td {
+            padding: 10px;
+        }
+        tbody th {
+            font-weight: normal;
+        }
+        .description {
+            width: 100%;
+        }
+        header {
+            padding: 10px 0 10px 0;
+            border-top: 2px dashed darkcyan;
+            border-bottom: 2px dashed darkcyan;
+            color: darkcyan;
+            font-weight: 600;
+        }
+        span {
+            color: chocolate;
+        }
+        span.uncertain {
+            color: darkgrey;
+        }
+    </style>
+</head>
+<body>
+<div class="statistics">
+    <p></p>
+</div>
+<table class="score" style="width:100%">
+    <thead>
+    <tr>
+        <th>DESCRIPTION</th>
+        <th>MAX SCORE</th>
+        <th>CERTAIN SCORE</th>
+        <th>POSSIBLE SCORE</th>
+        <th>QUERY TYPE</th>
+        <th>OCCURRENCES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>defining primary keys of tables</th>
+        <th>1</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>CREATE</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>using integrity constraints</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>CREATE</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>using ON UPDATE/DELETE for foreign key</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>CREATE</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>statements to fill tables by data</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>INSERT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>outer join of tables</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>inner join of tables</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>condition on the data</th>
+        <th>1</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>aggregation</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>sorting and pagination</th>
+        <th>1</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>set operations</th>
+        <th>1</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>inner SELECT</th>
+        <th>2</th>
+        <th>0.0</th>
+        <th>0.0</th>
+        <th>SELECT</th>
+        <th>0</th>
+    </tr></tbody>
+    <tfoot>
+    <tr>
+        <th>TOTAL SCORE</th>
+        <th>18</th>
+        <th>0.0</th>
+        <th>0.0</th>
+    </tr>
+    </tfoot>
+</table>
+<table class="logs" style="width:100%">
+    <tbody></tbody>
+</table>
+<div class="description">
+    <div class="relationalModel">
+        <header>RELATIONAL MODEL</header>
+        <p></p>
+    </div>
+    <div class="primaryKeys">
+        <header>PRIMARY KEYS</header>
+        <p>Primary key is defined in every table</p>
+    </div>
+    <div class="integrityConstraints">
+        <header>INTEGRITY CONSTRAINTS</header>
+        <p>FOREIGN KEY constraint is occurred 0 times<br>CHECK constraint is occurred 0 times<br>UNIQUE constraint is occurred 0 times<br>NOT NULL constraint is occurred 0 times<br><br></p>
+    </div>
+    <div class="onUpdateDelete">
+        <header>ON UPDATE / DELETE</header>
+        <p>ON UPDATE / DELETE usage was not found</p>
+    </div>
+    <div class="outerJoin">
+        <header>OUTER JOIN</header>
+        <p>OUTER JOIN was not found</p>
+    </div>
+    <div class="innerJoin">
+        <header>INNER JOIN</header>
+        <p>INNER JOIN was not found</p>
+    </div>
+    <div class="condition">
+        <header>CONDITION ON THE DATA</header>
+        <p>Condition usage was not found</p>
+    </div>
+    <div class="aggregation">
+        <header>AGGREGATION</header>
+        <p>Aggregation usage was not found</p>
+    </div>
+    <div class="sorting">
+        <header>SORTING AND PAGINATION</header>
+        <p>Sorting and pagination usage was not found</p>
+    </div>
+    <div class="setOperations">
+        <header>SET OPERATION</header>
+        <p>Set operations usage was not found</p>
+    </div>
+    <div class="innerSelect">
+        <header>INNER SELECT</header>
+        <p>Inner SELECT usage was not found</p>
+    </div>
+</div>
+</body>
+</html>
